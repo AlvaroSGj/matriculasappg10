@@ -1,13 +1,40 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
-  final Map<String, dynamic> persona1 = {
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  Map<String, dynamic> persona1 = {
     "name": "Jhonny",
     "lastname": "Gallegos",
     "address": "Calle 123",
     "dni": "12345678",
     "nacionalidad": "Peruan@",
   };
+
+  Map<String, dynamic> institucion1 = {
+    "name": "Tecpsup",
+    "direccion": "Calle lima 123",
+    "ruc": "945609420",
+    "matriculas": [],
+  };
+
+  Map<String, dynamic> matricula1 = {
+    "date": "09/11/2024",
+    "hour": "10:21",
+    "studnet": {
+      "name": "Jhonny",
+      "lastname": "Gallegos",
+      "address": "Calle 123",
+      "dni": "12345678",
+      "nacionalidad": "Peruan@",
+    },
+    "carrera": "diseño",
+  };
+
+  List<ListTile>personaListTile=[];
 
   @override
   Widget build(BuildContext context) {
@@ -20,22 +47,25 @@ class HomePage extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            ListTile(
-              title: Text("Nombre"),
-              subtitle: Text("Información adicional"),
-              leading: CircleAvatar(
-                backgroundImage: NetworkImage(
-                    "https://cdn-icons-png.flaticon.com/512/4792/4792929.png"), //Colocando una imagen como leading
-              ),
-              trailing: Icon(Icons.arrow_forward_ios),
-              onTap: () {
-                print("Esto es un ListTile");
-              },
-              contentPadding: EdgeInsets.symmetric(horizontal: 20,vertical: 10), //espaciado interno entre el contenido y el limite del tile
-              tileColor: Colors.red, //color de fondo del tile
-              selected: true,
-              //selectedTileColor: Colors.blue,
+            ElevatedButton(onPressed: () {
+              personaListTile.add(
+                ListTile(
+           title: Text(
+            "${persona1["name"]}"
+            "${persona1["lastname"]}",
+             ),
+             subtitle: Text(
+              "${persona1["address"]}-  "
+               ),
             ),
+            );
+            setState(() {
+              
+            });
+
+            }, child: Text("Agregar usuarios")),
+           
+            ...personaListTile
           ],
         ),
       ),
